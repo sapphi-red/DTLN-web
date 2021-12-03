@@ -40,7 +40,15 @@ $form.addEventListener('submit', async e => {
   const formData = new FormData($form)
   const input = formData.get('input')
   const enabled = formData.has('enabled')
+  const channelCount = formData.get('channelCount')
   if (typeof input !== 'string') return
+  if (typeof channelCount !== 'string') return
+  if (!/\d+/.test(channelCount.trim())) {
+    throw new Error('channelCount must be number')
+  }
+  if (+channelCount < 0 || +channelCount > 2) {
+    throw new Error('channelCount must be 1 or 2')
+  }
 
   console.log('2: Loading...')
   const source = await getSourceNode(ctx, input)
@@ -49,7 +57,7 @@ $form.addEventListener('submit', async e => {
   console.log('3: Start')
   dtln?.disconnect()
   gain?.disconnect()
-  dtln = createDtlnProcessorNode(ctx, { channelCount: 2 })
+  dtln = createDtlnProcessorNode(ctx, { channelCount: +channelCount })
   gain = new GainNode(ctx, { gain: 1 })
 
   if (enabled) {
