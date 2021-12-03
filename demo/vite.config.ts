@@ -3,7 +3,7 @@ import { staticCopyPlugin } from './vite-static-copy-plugin'
 
 export default defineConfig({
   build: {
-    target: 'esnext'
+    target: 'es2019'
   },
   plugins: [
     staticCopyPlugin({
