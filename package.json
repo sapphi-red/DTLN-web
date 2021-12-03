@@ -1,0 +1,47 @@
+{
+  "name": "@sapphi-red/dtln-web",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "tsup src/index.ts --watch src",
+    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs && node ./build/copy.mjs",
+    "lint": "eslint --cache ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapphi-red/DTLN-web.git"
+  },
+  "author": "sapphi-red (https://github.com/sapphi-red)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sapphi-red/DTLN-web/issues"
+  },
+  "homepage": "https://github.com/sapphi-red/DTLN-web#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.11.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
+    "fft.js": "^4.0.4"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "@typescript/lib-dom": "npm:@types/web@^0.0.47",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fast-glob": "^3.2.7",
+    "prettier": "^2.5.0",
+    "tsup": "^5.10.1"
+  }
+}
