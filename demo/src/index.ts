@@ -50,7 +50,7 @@ $form.addEventListener('submit', async e => {
   dtln?.disconnect()
   gain?.disconnect()
   dtln = createDtlnProcessorNode(ctx, { channelCount: 2 })
-  gain = new GainNode(ctx, { gain: 1.5 })
+  gain = new GainNode(ctx, { gain: 1 })
 
   if (enabled) {
     source.connect(dtln)
