@@ -29,7 +29,8 @@ const collectCopyTargets = async (targets: Target[], flatten: boolean) => {
       const destDir =
         flatten || (!flatten && !dir)
           ? dest
-          : dir.replace(dir.split('/')[0]!, dest)
+          : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            dir.replace(dir.split('/')[0]!, dest)
 
       copyTargets.push({ src: matchedPath, dest: path.join(destDir, base) })
     }
@@ -97,6 +98,7 @@ function servePublicMiddleware(dir: string): Connect.NextHandleFunction {
   // Keep the named function. The name is visible in debug logs via `DEBUG=connect:dispatcher ...`
   return function viteServePublicMiddleware(req, res, next) {
     // skip import request and internal requests `/@fs/ /@vite-client` etc...
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (isImportRequest(req.url!) || isInternalRequest(req.url!)) {
       return next()
     }
@@ -119,6 +121,7 @@ export const staticCopyPlugin = ({
         // copy again
         try {
           await fs.rm(devCopyDir, { force: true, recursive: true })
+          // eslint-disable-next-line no-empty
         } catch {}
         await fs.mkdir(devCopyDir, { recursive: true })
 
