@@ -1,4 +1,5 @@
-import * as tf from '@tensorflow/tfjs'
+import * as tf from '@tensorflow/tfjs-core'
+import '@tensorflow/tfjs-backend-cpu'
 import * as tflite from '@tensorflow/tfjs-tflite'
 
 export const setup = async () => {

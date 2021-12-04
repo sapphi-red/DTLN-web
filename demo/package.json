@@ -17,6 +17,9 @@
     "vite": "^2.6.14"
   },
   "dependencies": {
-    "@sapphi-red/dtln-web": "file:.."
+    "@sapphi-red/dtln-web": "file:..",
+    "@tensorflow/tfjs-backend-cpu": "^3.11.0",
+    "@tensorflow/tfjs-core": "^3.11.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8"
   }
 }

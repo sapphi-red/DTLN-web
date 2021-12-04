@@ -1,11 +1,11 @@
-import * as tf from '@tensorflow/tfjs'
+import * as tf from '@tensorflow/tfjs-core'
 import FFT from 'fft.js'
 import { blockLen } from './constants'
 
 export const angle = (complexes: tf.Tensor) =>
   tf.tidy(() => {
-    const reals = tf.real(complexes).squeeze()
-    const imags = tf.imag(complexes).squeeze()
+    const reals = tf.squeeze(tf.real(complexes))
+    const imags = tf.squeeze(tf.imag(complexes))
     return tf.atan2(imags, reals)
   })
 
@@ -47,7 +47,7 @@ export const rfft = (inputArr: ArrayLike<number>) => {
  * Use this instead of it for performance reasons.
  */
 export const irfft = (input: tf.Tensor) => {
-  const inputArr = tf.tidy(() => input.squeeze()).arraySync()
+  const inputArr = tf.tidy(() => tf.squeeze(input)).arraySync()
   fft.completeSpectrum(inputArr)
 
   const outputArr = fft.createComplexArray()

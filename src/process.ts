@@ -1,4 +1,4 @@
-import * as tf from '@tensorflow/tfjs'
+import * as tf from '@tensorflow/tfjs-core'
 import { blockLen, blockShift } from './constants'
 import { angle, imagExp, irfft, rfft } from './fn'
 import { Model1, Model2 } from './model'
@@ -32,7 +32,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     inBuffer.set(input, inBuffer.length - blockShift)
 
     const inBlockFft = rfft(inBuffer)
-    const inMag = tf.tidy(() => tf.abs(inBlockFft).reshape([1, 1, -1]))
+    const inMag = tf.tidy(() => tf.reshape(tf.abs(inBlockFft), [1, 1, -1]))
     const inPhase = angle(inBlockFft)
     inBlockFft.dispose()
 
@@ -45,7 +45,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     states1 = res1['Identity_1' /* outputDetails1[1].name */]
 
     const estimatedComplex = tf.tidy(() =>
-      inMag.mul(outMask).mul(imagExp(inPhase))
+      tf.mul(tf.mul(inMag, outMask), imagExp(inPhase))
     )
     const estimatedBlockTemp = irfft(estimatedComplex)
     estimatedComplex.dispose()
@@ -66,7 +66,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     outBuffer.copyWithin(0, blockShift)
     outBuffer.fill(0, -blockShift)
     const outBufferHeadResult = tf.tidy(() =>
-      tf.add(outBuffer.subarray(0, blockLen), outBlock.squeeze())
+      tf.add(outBuffer.subarray(0, blockLen), tf.squeeze(outBlock))
     )
     outBuffer.set(outBufferHeadResult.dataSync(), 0)
     outBufferHeadResult.dispose()

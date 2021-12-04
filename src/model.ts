@@ -1,13 +1,13 @@
 import {
-  Shape,
   ModelTensorInfo,
   ModelPredictConfig,
   NamedTensorMap,
   Tensor
-} from '@tensorflow/tfjs'
+} from '@tensorflow/tfjs-core'
 import { TFLiteModel } from '@tensorflow/tfjs-tflite'
 
-type ModelTensorInfoWithShape = ModelTensorInfo & { shape: Shape }
+type ModelTensorInfoWithShape = ModelTensorInfo &
+  Required<Pick<ModelTensorInfo, 'shape'>>
 
 interface Model1OutputNamedTensorMap extends NamedTensorMap {
   Identity: Tensor
