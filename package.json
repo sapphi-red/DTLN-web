@@ -13,8 +13,8 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "tsup src/index.ts --watch src",
-    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs && node ./build/copy.mjs",
+    "start": "tsup src/index.ts --watch src --platform browser",
+    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --platform browser && node ./build/copy.mjs",
     "lint": "eslint --cache ."
   },
   "repository": {
