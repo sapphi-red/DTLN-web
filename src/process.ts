@@ -66,13 +66,20 @@ export const createProcess = (model1: Model1, model2: Model2) => {
 
     outBuffer.copyWithin(0, blockShift)
     outBuffer.fill(0, -blockShift)
-    const outBufferHeadResult = tf.tidy(() =>
-      tf.add(outBuffer.subarray(0, blockLen), tf.squeeze(outBlock))
-    )
-    outBuffer.set(outBufferHeadResult.dataSync(), 0)
-    outBufferHeadResult.dispose()
+    addHead(outBuffer, outBlock.dataSync())
     outBlock.dispose()
 
     output.set(outBuffer.subarray(0, blockShift))
+  }
+}
+
+/**
+ * aの先頭部分の各要素にbの各要素を足す
+ * a.length > b.lengthである想定
+ */
+const addHead = (a: Float32Array, b: ArrayLike<number>) => {
+  for (let i = 0; i < b.length; i++) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    a[i] += b[i]!
   }
 }
