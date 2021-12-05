@@ -24,7 +24,7 @@ import { setup } from './setup'
 
   console.log('1: Setup...')
   await setup()
-  await loadModel({ quant: false })
+  await loadModel({ quant: type === 'tflite-quant' })
   console.log('1: Setup done')
 
   const $startButton = document.getElementById(
