@@ -47,6 +47,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     const estimatedComplex = tf.tidy(() =>
       tf.mul(tf.mul(inMag, outMask), imagExp(inPhase))
     )
+    outMask.dispose()
     const estimatedBlockTemp = irfft(estimatedComplex)
     estimatedComplex.dispose()
     const estimatedBlock = tf.tidy(() =>
