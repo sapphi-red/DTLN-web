@@ -1,10 +1,10 @@
 import {
+  setup,
   sampleRate,
   createDtlnAecProcessorNode,
   loadAecModel
 } from '@sapphi-red/dtln-web'
 import { getSourceNodes } from './inputs'
-import { setup } from '../../src/setup'
 
 //
 ;(async () => {
@@ -24,7 +24,7 @@ import { setup } from '../../src/setup'
   $units.removeAttribute('href')
 
   console.log('1: Setup...')
-  await setup()
+  await setup('/tfjs-tflite/')
   await loadAecModel({ units })
   console.log('1: Setup done')
 

@@ -1,3 +1,5 @@
+export { setup } from './setup'
+
 export { sampleRate } from './constants'
 
 export {

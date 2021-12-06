@@ -1,10 +1,10 @@
 import {
+  setup,
   sampleRate,
   createDtlnProcessorNode,
   loadModel
 } from '@sapphi-red/dtln-web'
 import { getSourceNode } from './inputs'
-import { setup } from './setup'
 
 //
 ;(async () => {
@@ -23,7 +23,7 @@ import { setup } from './setup'
   $type.removeAttribute('href')
 
   console.log('1: Setup...')
-  await setup()
+  await setup('/tfjs-tflite/')
   await loadModel({ quant: type === 'tflite-quant' })
   console.log('1: Setup done')
 

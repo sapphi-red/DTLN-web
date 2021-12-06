@@ -13,8 +13,11 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "tsup src/index.ts --watch src --target es2019 --platform browser",
-    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --target es2019 --platform browser && esmo ./scripts/copy.mts",
+    "start": "tsup src/index.ts --watch src",
+    "build": "npm run build:tfjs && npm run build:ts && npm run build:models",
+    "build:ts": "tsup src/index.ts",
+    "build:models": "esmo ./scripts/copy.mts",
+    "build:tfjs": "tfjs-custom-module --config scripts/custom_tfjs_config.json",
     "lint": "eslint --cache .",
     "type-check": "tsc --noEmit",
     "demo": "cd demo && npm ci && npm run build && npm run preview",
@@ -32,12 +35,12 @@
   },
   "homepage": "https://github.com/sapphi-red/DTLN-web#readme",
   "dependencies": {
-    "@tensorflow/tfjs-core": "^3.11.0",
-    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
     "fft.js": "^4.0.4"
   },
   "sideEffects": false,
   "devDependencies": {
+    "@tensorflow/tfjs": "^3.11.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "@typescript/lib-dom": "npm:@types/web@^0.0.47",

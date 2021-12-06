@@ -1,0 +1,18 @@
+{
+  "kernels": [
+    "Complex",
+    "ComplexAbs",
+    "Reshape",
+    "Real",
+    "Imag",
+    "Atan2",
+    "Multiply",
+    "Cos",
+    "Sin",
+    "Cast"
+  ],
+  "backends": ["cpu"],
+  "models": [],
+  "outputPath": "./custom_tfjs",
+  "forwardModeOnly": true
+}
