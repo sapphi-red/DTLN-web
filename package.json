@@ -16,13 +16,13 @@
     "start": "tsup src/index.ts --watch src",
     "build": "npm run build:tfjs && npm run build:ts && npm run build:models",
     "build:ts": "tsup src/index.ts",
-    "build:models": "esmo ./scripts/copy.mts",
+    "build:models": "esmo ./scripts/copy.ts",
     "build:tfjs": "tfjs-custom-module --config scripts/custom_tfjs_config.json",
     "lint": "eslint --cache .",
     "type-check": "tsc --noEmit",
     "demo": "cd demo && npm ci && npm run build && npm run preview",
     "bench": "start-server-and-test demo 5000 bench:only-run",
-    "bench:only-run": "esmo scripts/bench.mts"
+    "bench:only-run": "esmo scripts/bench.ts"
   },
   "repository": {
     "type": "git",
