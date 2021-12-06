@@ -13,7 +13,7 @@ let model2: AecModel2 | undefined
 
 export const loadAecModel = async ({
   path = '/models',
-  units = 512
+  units = 128
 }: {
   path?: string
   units?: 128 | 256 | 512

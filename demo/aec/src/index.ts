@@ -14,7 +14,7 @@ import { setup } from '../../src/setup'
     if (t === '128') return 128
     if (t === '256') return 256
     if (t === '512') return 512
-    return 512
+    return 128
   })()
 
   const $units = document.getElementById(
