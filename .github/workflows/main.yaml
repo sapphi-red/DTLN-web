@@ -79,7 +79,7 @@ jobs:
         run: npm ci
         working-directory: demo
   build-demo:
-    name: run build
+    name: run build (demo)
     runs-on: ubuntu-latest
     needs: [packages-demo]
     steps:
