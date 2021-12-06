@@ -55,3 +55,14 @@ export const irfft = (input: tf.Tensor) => {
   const outputReal = fft.fromComplexArray(outputArr, undefined)
   return tf.tensor1d(outputReal)
 }
+
+/**
+ * aの先頭部分の各要素にbの各要素を足す
+ * a.length > b.lengthである想定
+ */
+export const addHead = (a: Float32Array, b: ArrayLike<number>) => {
+  for (let i = 0; i < b.length; i++) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    a[i] += b[i]!
+  }
+}

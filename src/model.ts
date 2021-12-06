@@ -36,3 +36,39 @@ export declare class Model2 extends TFLiteModel {
     config?: ModelPredictConfig
   ): Model2OutputNamedTensorMap
 }
+
+interface AecModel1OutputNamedTensorMap extends NamedTensorMap {
+  Identity: Tensor
+  Identity_1: Tensor
+}
+
+export declare class AecModel1 extends TFLiteModel {
+  readonly inputs: [
+    ModelTensorInfoWithShape,
+    ModelTensorInfoWithShape,
+    ModelTensorInfoWithShape
+  ]
+  readonly outputs: [ModelTensorInfoWithShape, ModelTensorInfoWithShape]
+  predict(
+    inputs: NamedTensorMap,
+    config?: ModelPredictConfig
+  ): AecModel1OutputNamedTensorMap
+}
+
+interface AecModel2OutputNamedTensorMap extends NamedTensorMap {
+  Identity: Tensor
+  Identity_1: Tensor
+}
+
+export declare class AecModel2 extends TFLiteModel {
+  readonly inputs: [
+    ModelTensorInfoWithShape,
+    ModelTensorInfoWithShape,
+    ModelTensorInfoWithShape
+  ]
+  readonly outputs: [ModelTensorInfoWithShape, ModelTensorInfoWithShape]
+  predict(
+    inputs: NamedTensorMap,
+    config?: ModelPredictConfig
+  ): AecModel2OutputNamedTensorMap
+}

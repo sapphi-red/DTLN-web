@@ -5,3 +5,8 @@ export {
   createDtlnProcessorNode,
   DtlnProcessorNodeOptions
 } from './DtlnProcessorNode'
+
+export {
+  loadAecModel,
+  createDtlnAecProcessorNode
+} from './DtlnAecProcessorNode'

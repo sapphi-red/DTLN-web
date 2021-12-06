@@ -15,8 +15,8 @@ export const loadModel = async ({ quant = false }: { quant?: boolean }) => {
   if (!model1 || !model2) {
     const suffix = quant ? '_quant' : ''
     const [_model1, _model2] = await Promise.all([
-      loadTFLiteModel(`./models/model${suffix}_1.tflite`),
-      loadTFLiteModel(`./models/model${suffix}_2.tflite`)
+      loadTFLiteModel(`/models/model${suffix}_1.tflite`),
+      loadTFLiteModel(`/models/model${suffix}_2.tflite`)
     ])
     model1 = _model1 as Model1
     model2 = _model2 as Model2

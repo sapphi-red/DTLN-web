@@ -1,7 +1,7 @@
 const inputMap = {
-  sample1: './inputs/audioset_realrec_airconditioner_2TE3LoA2OUQ.wav',
-  sample2: './inputs/clnsp52_amMeH4u6AO4_snr5_tl-18_fileid_19.wav',
-  sample3: './inputs/clnsp57_bus_84241_3_snr2_tl-30_fileid_300.wav'
+  sample1: '/inputs/audioset_realrec_airconditioner_2TE3LoA2OUQ.wav',
+  sample2: '/inputs/clnsp52_amMeH4u6AO4_snr5_tl-18_fileid_19.wav',
+  sample3: '/inputs/clnsp57_bus_84241_3_snr2_tl-30_fileid_300.wav'
 }
 
 const load = async (ctx: AudioContext, input: keyof typeof inputMap) => {

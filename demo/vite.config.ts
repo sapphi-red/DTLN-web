@@ -1,9 +1,16 @@
 import { defineConfig } from 'vite'
 import { staticCopyPlugin } from './vite-static-copy-plugin'
+import path from 'path'
 
 export default defineConfig({
   build: {
-    target: 'es2019'
+    target: 'es2019',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        aec: path.resolve(__dirname, 'aec/index.html')
+      }
+    }
   },
   plugins: [
     staticCopyPlugin({
@@ -15,6 +22,10 @@ export default defineConfig({
         {
           src: 'node_modules/@sapphi-red/dtln-web/dist/*.tflite',
           dest: 'models'
+        },
+        {
+          src: '../DTLN-aec/audio_samples/*',
+          dest: 'inputs'
         }
       ]
     })

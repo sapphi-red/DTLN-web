@@ -1,3 +1,6 @@
 [submodule "DTLN"]
 	path = DTLN
 	url = https://github.com/breizhn/DTLN.git
+[submodule "DTLN-aec"]
+	path = DTLN-aec
+	url = https://github.com/breizhn/DTLN-aec.git
