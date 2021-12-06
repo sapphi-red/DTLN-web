@@ -98,8 +98,10 @@ jobs:
           path: ./dist
       - name: npm ci
         run: npm ci
+      - name: npm ci (demo)
+        run: npm ci
         working-directory: demo
-      - name: run build
+      - name: run build (demo)
         run: npm run build
         working-directory: demo
   bench:
