@@ -14,8 +14,11 @@
   },
   "scripts": {
     "start": "tsup src/index.ts --watch src --target es2019 --platform browser",
-    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --target es2019 --platform browser && node ./build/copy.mjs",
-    "lint": "eslint --cache ."
+    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --target es2019 --platform browser && esno ./scripts/copy",
+    "lint": "eslint --cache .",
+    "demo": "cd demo && npm ci && npm run build && npm run preview",
+    "bench": "start-server-and-test demo 5000 bench:only-run",
+    "bench:only-run": "esno scripts/bench"
   },
   "repository": {
     "type": "git",
@@ -40,8 +43,11 @@
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "esno": "^0.12.1",
     "fast-glob": "^3.2.7",
     "prettier": "^2.5.0",
+    "puppeteer": "^12.0.1",
+    "start-server-and-test": "^1.14.0",
     "tsup": "^5.10.1"
   }
 }

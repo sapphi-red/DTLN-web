@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:all": "cd .. && npm run build && cd demo && npm run build"
+    "build:all": "cd .. && npm run build && cd demo && npm run build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",

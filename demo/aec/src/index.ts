@@ -73,11 +73,13 @@ import { setup } from '../../src/setup'
       ;(sourceMic as AudioBufferSourceNode).start()
       ;(sourceLpb as AudioBufferSourceNode).start()
     }
+    console.log('$START$') // for puppeteer
 
     sourceMic.addEventListener(
       'ended',
       () => {
         console.log('3: Done')
+        console.log('$DONE$') // for puppeteer
 
         source?.disconnect()
         dtlnAec?.disconnect()

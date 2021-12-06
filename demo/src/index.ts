@@ -74,11 +74,13 @@ import { setup } from './setup'
     if (input !== 'microphone') {
       ;(source as AudioBufferSourceNode).start()
     }
+    console.log('$START$') // for puppeteer
 
     source.addEventListener(
       'ended',
       () => {
         console.log('3: Done')
+        console.log('$DONE$') // for puppeteer
 
         dtln?.disconnect()
         gain?.disconnect()
