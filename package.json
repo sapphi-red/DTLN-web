@@ -14,11 +14,11 @@
   },
   "scripts": {
     "start": "tsup src/index.ts --watch src --target es2019 --platform browser",
-    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --target es2019 --platform browser && esno ./scripts/copy",
+    "build": "tsup src/index.ts --dts --sourcemap --format esm,cjs --target es2019 --platform browser && esmo ./scripts/copy.mts",
     "lint": "eslint --cache .",
     "demo": "cd demo && npm ci && npm run build && npm run preview",
     "bench": "start-server-and-test demo 5000 bench:only-run",
-    "bench:only-run": "esno scripts/bench"
+    "bench:only-run": "esmo scripts/bench.mts"
   },
   "repository": {
     "type": "git",
