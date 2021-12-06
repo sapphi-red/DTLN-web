@@ -5,12 +5,12 @@ import { Model1, Model2 } from './model'
 
 export const createProcess = (model1: Model1, model2: Model2) => {
   const inputDetails1 = model1.inputs
-  // const outputDetails1 = model1.outputs
+  const outputDetails1 = model1.outputs
 
   const inputDetails2 = model2.inputs
-  // const outputDetails2 = model2.outputs
+  const outputDetails2 = model2.outputs
 
-  let states1 = tf.zeros(inputDetails1[1].shape, 'float32')
+  let states1 = tf.zeros(inputDetails1[0].shape, 'float32')
   let states2 = tf.zeros(inputDetails2[1].shape, 'float32')
 
   const inBuffer = new Float32Array(blockLen)
@@ -37,12 +37,14 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     inBlockFft.dispose()
 
     const res1 = model1.predict({
-      [inputDetails1[1].name]: states1,
-      [inputDetails1[0].name]: inMag
+      [inputDetails1[0].name]: states1,
+      [inputDetails1[1].name]: inMag
     })
     states1.dispose()
-    const outMask = res1['Identity' /* outputDetails1[0].name */]
-    states1 = res1['Identity_1' /* outputDetails1[1].name */]
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const outMask = res1[outputDetails1[0].name]!
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    states1 = res1[outputDetails1[1].name]!
 
     const estimatedComplex = tf.tidy(() =>
       tf.mul(tf.mul(inMag, outMask), imagExp(inPhase))
@@ -61,8 +63,10 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     })
     states2.dispose()
     estimatedBlock.dispose()
-    const outBlock = res2['Identity' /* outputDetails2[0].name */]
-    states2 = res2['Identity_1' /* outputDetails2[1].name */]
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const outBlock = res2[outputDetails2[1].name]!
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    states2 = res2[outputDetails2[0].name]!
 
     outBuffer.copyWithin(0, blockShift)
     outBuffer.fill(0, -blockShift)

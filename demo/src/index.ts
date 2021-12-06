@@ -12,8 +12,23 @@ import { getSourceNode } from './inputs'
   const type = (() => {
     const t = pageParams.get('type')
     if (t === 'tflite') return 'tflite' as const
-    if (t === 'tflite-quant') return 'tflite-quant'
+    if (t === 'tflite-quant-dynamic') return 'tflite-quant-dynamic'
+    if (t === 'tflite-quant-f16') return 'tflite-quant-f16'
     return 'tflite' as const
+  })()
+  const quant = (() => {
+    switch (type) {
+      case 'tflite':
+        return undefined
+      case 'tflite-quant-dynamic':
+        return 'dynamic'
+      case 'tflite-quant-f16':
+        return 'f16'
+      default: {
+        const t: never = type
+        throw new Error(`Unknown type: ${t}`)
+      }
+    }
   })()
 
   const $type = document.getElementById(
@@ -24,7 +39,7 @@ import { getSourceNode } from './inputs'
 
   console.log('1: Setup...')
   await setup('/tfjs-tflite/')
-  await loadModel({ quant: type === 'tflite-quant' })
+  await loadModel({ quant })
   console.log('1: Setup done')
 
   const $startButton = document.getElementById(
