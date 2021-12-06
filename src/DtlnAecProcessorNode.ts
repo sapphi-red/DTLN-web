@@ -12,14 +12,16 @@ let model1: AecModel1 | undefined
 let model2: AecModel2 | undefined
 
 export const loadAecModel = async ({
+  path = '/models',
   units = 512
 }: {
+  path?: string
   units?: 128 | 256 | 512
 }) => {
   if (!model1 || !model2) {
     const [_model1, _model2] = await Promise.all([
-      loadTFLiteModel(`/models/dtln_aec_${units}_1.tflite`),
-      loadTFLiteModel(`/models/dtln_aec_${units}_2.tflite`)
+      loadTFLiteModel(`${path}/dtln_aec_${units}_1.tflite`),
+      loadTFLiteModel(`${path}/dtln_aec_${units}_2.tflite`)
     ])
     model1 = _model1 as AecModel1
     model2 = _model2 as AecModel2
