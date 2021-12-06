@@ -1,3 +1,4 @@
+//@ts-expect-error d.ts missing?
 import { defineConfig } from 'tsup'
 import { Plugin } from 'esbuild'
 import path from 'path'
