@@ -3,7 +3,7 @@ import fg from 'fast-glob'
 import path from 'path'
 
 const modelFiles = await fg([
-  './DTLN/pretrained_model/*.tflite',
+  './models/*.tflite',
   './DTLN-aec/pretrained_models/*.tflite'
 ])
 await Promise.all(

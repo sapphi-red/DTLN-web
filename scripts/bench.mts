@@ -111,13 +111,23 @@ const recordMetrics = async (
       rate: 2
     },
     {
-      title: 'DTLN[quant] (CPU throttle x1)',
-      url: '/?type=tflite-quant',
+      title: 'DTLN[quant dynamic] (CPU throttle x1)',
+      url: '/?type=tflite-quant-dynamic',
       rate: 1
     },
     {
-      title: 'DTLN[quant] (CPU throttle x2)',
-      url: '/?type=tflite-quant',
+      title: 'DTLN[quant dynamic] (CPU throttle x2)',
+      url: '/?type=tflite-quant-dynamic',
+      rate: 2
+    },
+    {
+      title: 'DTLN[quant f16] (CPU throttle x1)',
+      url: '/?type=tflite-quant-f16',
+      rate: 1
+    },
+    {
+      title: 'DTLN[quant f16] (CPU throttle x2)',
+      url: '/?type=tflite-quant-f16',
       rate: 2
     },
     {
