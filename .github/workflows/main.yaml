@@ -42,6 +42,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: setup Node
         uses: actions/setup-node@v2
         with:
@@ -55,6 +57,51 @@ jobs:
         with:
           name: dist
           path: ./dist
+  packages-demo:
+    name: check npm install (demo)
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./dist
+      - name: check npm ci
+        run: npm ci
+        working-directory: demo
+  build-demo:
+    name: run build
+    runs-on: ubuntu-latest
+    needs: [packages-demo]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./dist
+      - name: npm ci
+        run: npm ci
+        working-directory: demo
+      - name: run build
+        run: npm run build
+        working-directory: demo
   bench:
     name: run bench
     runs-on: ubuntu-latest
@@ -62,6 +109,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: setup Node
         uses: actions/setup-node@v2
         with:
