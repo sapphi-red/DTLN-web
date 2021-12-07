@@ -14,9 +14,17 @@
     <h2>DTLN-web aec</h2>
     <form id="form">
       <h3>Units</h3>
-        <a id="link-type-128" style="margin-right: 1rem" href="/aec/">128</a>
-        <a id="link-type-256" style="margin-right: 1rem" href="/aec/?units=256">256</a>
-        <a id="link-type-512" href="/aec/?units=512">512</a>
+      <div id="links">
+        <a style="margin-right: 1rem" href="/aec/">128</a>
+        <a style="margin-right: 1rem" href="/aec/?quant=dynamic">128 (dynamic quant)</a>
+        <a style="margin-right: 1rem" href="/aec/?quant=f16">128 (f16 quant)</a>
+        <a style="margin-right: 1rem" href="/aec/?units=256">256</a>
+        <a style="margin-right: 1rem" href="/aec/?units=256&quant=dynamic">256 (dynamic quant)</a>
+        <a style="margin-right: 1rem" href="/aec/?units=256&quant=f16">256 (f16 quant)</a>
+        <a style="margin-right: 1rem" href="/aec/?units=512">512</a>
+        <a style="margin-right: 1rem" href="/aec/?units=512&quant=dynamic">512 (dynamic quant)</a>
+        <a href="/aec/?units=512&quant=f16">512 (f16 quant)</a>
+      </div>
       <h3>Input</h3>
       <div>
         <label style="display: block"><input type="radio" name="input" value="sample1" checked> DTLN-aec Sample 1</label>

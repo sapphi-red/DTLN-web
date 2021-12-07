@@ -6,9 +6,8 @@ import {
 } from '@sapphi-red/dtln-web'
 import { getSourceNodes } from './inputs'
 
-//
-;(async () => {
-  const pageParams = new URLSearchParams(location.search)
+const getParams = (url: string) => {
+  const pageParams = new URL(url).searchParams
   const units = (() => {
     const t = pageParams.get('units')
     if (t === '128') return 128
@@ -16,16 +15,33 @@ import { getSourceNodes } from './inputs'
     if (t === '512') return 512
     return 128
   })()
+  const quant = (() => {
+    const q = pageParams.get('quant')
+    if (q === 'dynamic') return 'dynamic'
+    if (q === 'f16') return 'f16'
+    return undefined
+  })()
+  return { units, quant } as const
+}
 
-  const $units = document.getElementById(
-    `link-type-${units}`
-  ) as HTMLAnchorElement
-  $units.innerHTML = `<b>${$units.innerHTML}</b>`
-  $units.removeAttribute('href')
+//
+;(async () => {
+  const { units, quant } = getParams(location.href)
+
+  const $currentLink = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('#links > a')
+  ).find($link => {
+    const params = getParams($link.href)
+    return params.units === units && params.quant === quant
+  })
+  if ($currentLink) {
+    $currentLink.innerHTML = `<b>${$currentLink.innerHTML}</b>`
+    $currentLink.removeAttribute('href')
+  }
 
   console.log('1: Setup...')
   await setup('/tfjs-tflite/')
-  await loadAecModel({ units })
+  await loadAecModel({ units, quant })
   console.log('1: Setup done')
 
   const $startButton = document.getElementById(

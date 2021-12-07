@@ -141,6 +141,26 @@ const recordMetrics = async (
       rate: 2
     },
     {
+      title: 'DTLN-aec[128 quant dynamic] (CPU throttle x1)',
+      url: '/aec/?quant=dynamic',
+      rate: 1
+    },
+    {
+      title: 'DTLN-aec[128 quant dynamic] (CPU throttle x2)',
+      url: '/aec/?quant=dynamic',
+      rate: 2
+    },
+    {
+      title: 'DTLN-aec[128 quant f16] (CPU throttle x1)',
+      url: '/aec/?quant=f16',
+      rate: 1
+    },
+    {
+      title: 'DTLN-aec[128 quant f16] (CPU throttle x2)',
+      url: '/aec/?quant=f16',
+      rate: 2
+    },
+    {
       title: 'DTLN-aec[512] (CPU throttle x1)',
       url: '/aec/?units=512',
       rate: 1

@@ -5,12 +5,12 @@ import { AecModel1, AecModel2 } from './model'
 
 export const createAecProcess = (model1: AecModel1, model2: AecModel2) => {
   const inputDetails1 = model1.inputs
-  // const outputDetails1 = model1.outputs
+  const outputDetails1 = model1.outputs
 
   const inputDetails2 = model2.inputs
-  // const outputDetails2 = model2.outputs
+  const outputDetails2 = model2.outputs
 
-  let states1 = tf.zeros(inputDetails1[1].shape, 'float32')
+  let states1 = tf.zeros(inputDetails1[2].shape, 'float32')
   let states2 = tf.zeros(inputDetails2[1].shape, 'float32')
 
   const inBuffer = new Float32Array(blockLen)
@@ -50,15 +50,17 @@ export const createAecProcess = (model1: AecModel1, model2: AecModel2) => {
     lpbBlockFft.dispose()
 
     const res1 = model1.predict({
-      [inputDetails1[0].name]: inMag,
-      [inputDetails1[2].name]: lpbMag,
-      [inputDetails1[1].name]: states1
+      [inputDetails1[1].name]: inMag,
+      [inputDetails1[0].name]: lpbMag,
+      [inputDetails1[2].name]: states1
     })
     inMag.dispose()
     lpbMag.dispose()
     states1.dispose()
-    const outMask = res1['Identity' /* outputDetails1[0].name */]
-    states1 = res1['Identity_1' /* outputDetails1[1].name */]
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const outMask = res1[outputDetails1[1].name]!
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    states1 = res1[outputDetails1[0].name]!
 
     const estimatedBlockMasked = tf.mul(inBlockFft, outMask)
     inBlockFft.dispose()
@@ -79,8 +81,10 @@ export const createAecProcess = (model1: AecModel1, model2: AecModel2) => {
     states2.dispose()
     estimatedBlock.dispose()
     inLpb.dispose()
-    const outBlock = res2['Identity' /* outputDetails2[0].name */]
-    states2 = res2['Identity_1' /* outputDetails2[1].name */]
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const outBlock = res2[outputDetails2[1].name]!
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    states2 = res2[outputDetails2[0].name]!
 
     outBuffer.copyWithin(0, blockShift)
     outBuffer.fill(0, -blockShift)
