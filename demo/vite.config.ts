@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { staticCopyPlugin } from './vite-static-copy-plugin'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import path from 'path'
 
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   plugins: [
-    staticCopyPlugin({
+    viteStaticCopy({
       targets: [
         {
           src: 'node_modules/@sapphi-red/dtln-web/node_modules/@tensorflow/tfjs-tflite/dist/**/tflite_web_api_cc*',

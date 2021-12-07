@@ -9,13 +9,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.13",
     "@typescript/lib-dom": "npm:@types/web@^0.0.47",
-    "chalk": "^4.1.2",
-    "fast-glob": "^3.2.7",
-    "fs-extra": "^10.0.0",
-    "sirv": "^1.0.19",
-    "vite": "^2.6.14"
+    "vite": "^2.6.14",
+    "vite-plugin-static-copy": "^0.1.0"
   },
   "dependencies": {
     "@sapphi-red/dtln-web": "file:.."
