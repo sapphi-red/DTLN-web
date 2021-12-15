@@ -38,8 +38,8 @@ import { getSourceNode } from './inputs'
   $type.removeAttribute('href')
 
   console.log('1: Setup...')
-  await setup('/tfjs-tflite/')
-  await loadModel({ quant })
+  await setup('/dtln-web/')
+  await loadModel({ path: '/dtln-web/', quant })
   console.log('1: Setup done')
 
   const $startButton = document.getElementById(

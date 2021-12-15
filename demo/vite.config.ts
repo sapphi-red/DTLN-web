@@ -16,12 +16,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'node_modules/@sapphi-red/dtln-web/node_modules/@tensorflow/tfjs-tflite/dist/**/tflite_web_api_cc*',
-          dest: 'tfjs-tflite'
-        },
-        {
-          src: 'node_modules/@sapphi-red/dtln-web/dist/*.tflite',
-          dest: 'models'
+          src: 'node_modules/@sapphi-red/dtln-web/dist/*',
+          dest: 'dtln-web'
         },
         {
           src: '../DTLN-aec/audio_samples/*',

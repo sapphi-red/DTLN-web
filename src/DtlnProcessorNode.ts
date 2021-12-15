@@ -12,17 +12,17 @@ let model1: Model1 | undefined
 let model2: Model2 | undefined
 
 export const loadModel = async ({
-  path = '/models',
+  path,
   quant
 }: {
-  path?: string
+  path: string
   quant?: 'dynamic' | 'f16'
 }) => {
   if (!model1 || !model2) {
     const suffix = quant === undefined ? '' : `_quant_${quant}`
     const [_model1, _model2] = await Promise.all([
-      loadTFLiteModel(`${path}/model${suffix}_1.tflite`),
-      loadTFLiteModel(`${path}/model${suffix}_2.tflite`)
+      loadTFLiteModel(`${path}model${suffix}_1.tflite`),
+      loadTFLiteModel(`${path}model${suffix}_2.tflite`)
     ])
     model1 = _model1 as Model1
     model2 = _model2 as Model2

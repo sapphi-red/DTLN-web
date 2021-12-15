@@ -40,8 +40,8 @@ const getParams = (url: string) => {
   }
 
   console.log('1: Setup...')
-  await setup('/tfjs-tflite/')
-  await loadAecModel({ units, quant })
+  await setup('/dtln-web/')
+  await loadAecModel({ path: '/dtln-web/', units, quant })
   console.log('1: Setup done')
 
   const $startButton = document.getElementById(
