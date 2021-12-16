@@ -44,7 +44,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const outMask = res1[outputDetails1[0].name]!
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    states1 = res1[outputDetails1[1].name]!
+    states1 = tf.clone(res1[outputDetails1[1].name]!) // clone to avoid "Cannot perform %TypedArray%.prototype.values on a detached ArrayBuffer"
 
     const estimatedComplex = tf.tidy(() =>
       tf.mul(tf.mul(inMag, outMask), imagExp(inPhase))
@@ -68,7 +68,7 @@ export const createProcess = (model1: Model1, model2: Model2) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const outBlock = res2[outputDetails2[1].name]!
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    states2 = res2[outputDetails2[0].name]!
+    states2 = tf.clone(res2[outputDetails2[0].name]!) // clone to avoid "Cannot perform %TypedArray%.prototype.values on a detached ArrayBuffer"
 
     outBuffer.copyWithin(0, blockShift)
     outBuffer.fill(0, -blockShift)
