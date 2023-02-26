@@ -21,7 +21,7 @@
     "lint": "eslint --cache .",
     "type-check": "tsc --noEmit",
     "demo": "cd demo && npm ci && npm run build && npm run preview",
-    "bench": "start-server-and-test demo 5000 bench:only-run",
+    "bench": "start-server-and-test demo 4173 bench:only-run",
     "bench:only-run": "tsx ./scripts/bench.mts"
   },
   "repository": {

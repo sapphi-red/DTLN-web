@@ -89,7 +89,7 @@ const recordMetrics = async (
   path: string,
   rate: number
 ) => {
-  await page.goto(`http://localhost:5000${path}`)
+  await page.goto(`http://localhost:4173${path}`)
   const cdpSession = await page.context().newCDPSession(page)
   setCPUThrottlingRate(cdpSession, rate)
 

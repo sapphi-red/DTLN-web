@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@typescript/lib-dom": "npm:@types/web@^0.0.47",
-    "vite": "^2.6.14",
-    "vite-plugin-static-copy": "^0.1.0"
+    "@typescript/lib-dom": "npm:@types/web@^0.0.92",
+    "vite": "^4.1.4",
+    "vite-plugin-static-copy": "^0.13.0"
   },
   "dependencies": {
     "@sapphi-red/dtln-web": "file:.."
