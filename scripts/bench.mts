@@ -1,12 +1,21 @@
-import puppeteer, { CDPSession, ConsoleMessage, Page } from 'puppeteer'
+import playwright, { CDPSession, ConsoleMessage, Page } from 'playwright-core'
 
 interface CPUUsage {
   timestamp: number
   usage: number
 }
 
-const fetchMetrics = async (page: Page) => {
-  const { Timestamp, TaskDuration } = await page.metrics()
+// https://github.com/microsoft/playwright/issues/18071
+async function getMetrics(client: CDPSession) {
+  const perfMetricObject = await client.send('Performance.getMetrics')
+  const metricObject = Object.fromEntries(
+    perfMetricObject.metrics.map(metric => [metric.name, metric.value])
+  )
+  return metricObject
+}
+
+const fetchMetrics = async (client: CDPSession) => {
+  const { Timestamp, TaskDuration } = await getMetrics(client)
   return {
     timestamp: Timestamp ?? 0,
     activeTime: TaskDuration ?? 0
@@ -14,14 +23,17 @@ const fetchMetrics = async (page: Page) => {
 }
 
 const logMetrics = async (page: Page, interval: number) => {
+  const client = await page.context().newCDPSession(page)
+  await client.send('Performance.enable')
+
   const { timestamp: startTime, activeTime: startActiveTime } =
-    await fetchMetrics(page)
+    await fetchMetrics(client)
   const snapshots: CPUUsage[] = []
 
   let lastTimestamp = startTime
   let lastActiveTime = startActiveTime
   const timer = setInterval(async () => {
-    const { timestamp, activeTime } = await fetchMetrics(page)
+    const { timestamp, activeTime } = await fetchMetrics(client)
     const frameDuration = timestamp - lastTimestamp
     const activeTimeDiff = activeTime - startActiveTime
     let usage = activeTimeDiff / frameDuration
@@ -78,7 +90,8 @@ const recordMetrics = async (
   rate: number
 ) => {
   await page.goto(`http://localhost:5000${path}`)
-  setCPUThrottlingRate(page.client(), rate)
+  const cdpSession = await page.context().newCDPSession(page)
+  setCPUThrottlingRate(cdpSession, rate)
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const $startButton = (await page.waitForSelector(
@@ -96,7 +109,7 @@ const recordMetrics = async (
 
 //
 ;(async () => {
-  const browser = await puppeteer.launch()
+  const browser = await playwright.chromium.launch()
   const page = await browser.newPage()
 
   const benchs = [
