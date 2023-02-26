@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"
+    />
     <title>DTLN-web demo</title>
   </head>
 
@@ -10,26 +13,50 @@
     <p>
       <a href="/aec/">DTLN-web aec</a>
     </p>
-    <hr>
+    <hr />
     <h2>DTLN</h2>
     <form id="form">
       <h3>Type</h3>
       <div id="links">
         <a id="link-type-tflite" style="margin-right: 1rem" href="/">tflite</a>
-        <a id="link-type-tflite-quant-dynamic" href="/?type=tflite-quant-dynamic">tflite (dynamic quant)</a>
-        <a id="link-type-tflite-quant-f16" href="/?type=tflite-quant-f16">tflite (f16 quant)</a>
+        <a
+          id="link-type-tflite-quant-dynamic"
+          href="/?type=tflite-quant-dynamic"
+          >tflite (dynamic quant)</a
+        >
+        <a id="link-type-tflite-quant-f16" href="/?type=tflite-quant-f16"
+          >tflite (f16 quant)</a
+        >
       </div>
       <h3>Input</h3>
       <div>
-        <label style="display: block"><input type="radio" name="input" value="sample1" checked> DTLN Sample 1</label>
-        <label style="display: block"><input type="radio" name="input" value="sample2"> DTLN Sample 2</label>
-        <label style="display: block"><input type="radio" name="input" value="sample3"> DTLN Sample 3</label>
-        <label style="display: block"><input type="radio" name="input" value="microphone"> Microphone</label>
+        <label style="display: block"
+          ><input type="radio" name="input" value="sample1" checked /> DTLN
+          Sample 1</label
+        >
+        <label style="display: block"
+          ><input type="radio" name="input" value="sample2" /> DTLN Sample
+          2</label
+        >
+        <label style="display: block"
+          ><input type="radio" name="input" value="sample3" /> DTLN Sample
+          3</label
+        >
+        <label style="display: block"
+          ><input type="radio" name="input" value="microphone" />
+          Microphone</label
+        >
       </div>
       <h3>Options</h3>
       <div>
-        <label style="display: block">Channel Count <input type="number" name="channelCount" min="1" max="2" value="2"></label>
-        <label style="display: block"><input type="checkbox" name="enabled" checked> Noise Suppression Enabled</label>
+        <label style="display: block"
+          >Channel Count
+          <input type="number" name="channelCount" min="1" max="2" value="2"
+        /></label>
+        <label style="display: block"
+          ><input type="checkbox" name="enabled" checked /> Noise Suppression
+          Enabled</label
+        >
       </div>
       <button id="start-button" disabled>Start</button>
     </form>
