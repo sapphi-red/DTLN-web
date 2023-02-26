@@ -80,8 +80,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: setup Node
         uses: actions/setup-node@v3
         with:
@@ -101,8 +99,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: setup Node
         uses: actions/setup-node@v3
         with:
@@ -150,8 +146,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: setup Node
         uses: actions/setup-node@v3
         with:
