@@ -16,13 +16,13 @@
     "start": "tsup src/index.ts --watch src",
     "build": "npm run build:tfjs && npm run build:ts && npm run build:models",
     "build:ts": "tsup src/index.ts",
-    "build:models": "esmo ./scripts/copy.ts",
+    "build:models": "tsx ./scripts/copy.mts",
     "build:tfjs": "tfjs-custom-module --config scripts/custom_tfjs_config.json",
     "lint": "eslint --cache .",
     "type-check": "tsc --noEmit",
     "demo": "cd demo && npm ci && npm run build && npm run preview",
     "bench": "start-server-and-test demo 5000 bench:only-run",
-    "bench:only-run": "esmo scripts/bench.ts"
+    "bench:only-run": "tsx ./scripts/bench.mts"
   },
   "repository": {
     "type": "git",
@@ -47,12 +47,12 @@
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "esno": "^0.12.1",
     "fast-glob": "^3.2.12",
     "prettier": "^2.8.4",
     "puppeteer": "^12.0.1",
     "start-server-and-test": "^1.14.0",
     "tsup": "^5.10.3",
+    "tsx": "^3.12.3",
     "typescript": "^4.9.5"
   }
 }
