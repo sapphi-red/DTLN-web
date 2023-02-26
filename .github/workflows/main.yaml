@@ -69,7 +69,7 @@ jobs:
         run: npm ci
       - name: run build
         run: npm run build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: dist
           path: ./dist
